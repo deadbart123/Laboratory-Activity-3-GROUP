@@ -10,7 +10,7 @@ configuration I used has the left pin connected to the power source to allow the
 Group Member Grades:
 
 Justin Kate Baugh 
-Louise Mark Bandoja :98
+Louise Mark Bandoja
 Luigi Dapo (LEADER)
 Virgillo Jr. Diaz
 Julius Gacis
