@@ -1,3 +1,7 @@
+// The temperature sensor used in this schematic is tmp36, the model requires to use the left pin or otherwise it would not work.
+// Despite the instruction to not use the left pin, it would not be possible in this diagram.
+
+
 //  define the pins we’re using for the temp sensor, LDR, and LED
 #define TEMP_SENSOR_PIN A0
 #define LDR_PIN A2
@@ -12,15 +16,15 @@ void setup() {
   Serial.begin(9600); 
 }
 
-// this function reads the temperature from Temperature Sensor
+// read the temperature from Temperature Sensor
 float readTemperature() {
-  int sensorValue = analogRead(TEMP_SENSOR_PIN);  
-  float voltage = sensorValue * (5.0 / 1023.0);  // Convert that to voltage
-  float temperatureC = (voltage - 0.5) * 100.0;  
-  return temperatureC; 
+  int sensorValue = analogRead(TEMP_SENSOR_PIN); // reads the analog input from temp sensor
+  float voltage = sensorValue * (5.0 / 1023.0);  // converts the reading into voltage value
+  float temperatureC = (voltage - 0.5508) * 100.0;  // converts the voltage value to celcius value
+  return temperatureC; // the readTemperature function contains the celcius value
 }
 
-// this function gets the brightness from the photoresistor
+// gets the brightness from the photoresistor
 int readBrightness() {
   return analogRead(LDR_PIN);  
 }
@@ -39,7 +43,7 @@ void loop() {
 
   // If both readings are above the thresholds,  blink the led
   if (temperature >= TEMP_THRESHOLD && brightness >= BRIGHTNESS_THRESHOLD) {
-    digitalWrite(LED_PIN, HIGH);  // Turn on the led
+    digitalWrite(LED_PIN, HIGH);  // turn on the led
     delay(100);  
     digitalWrite(LED_PIN, LOW);  // turn it off
     delay(100);  
@@ -47,5 +51,5 @@ void loop() {
     digitalWrite(LED_PIN, LOW);  //  keep the led off if no fire
   }
   
-  delay(50);  
+  delay(100);  
 }
